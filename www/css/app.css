@@ -1,0 +1,21 @@
+/* Your app's CSS, go crazy, make it your own */
+
+.ionic-logo {
+  display: block;
+  margin: 15px auto;
+  width: 96px;
+  height: 96px;
+}
+
+.details {
+      margin-right: 150px;
+    margin-left: 50px;
+}
+.altinator { 
+	background-color: black;
+
+}
+ .item:nth-child(odd){
+    background-color: #d8dfe6 !important;
+}
+
