@@ -55,9 +55,6 @@ angular.module('starter.controllers', [])
         function getDateFromItem(item){
            var date = new Date(item.startTime);
 		   if(isNaN(date.getTime())) {
-			date = new Date(item.start.date);
-		   }
-		   if(isNaN(date.getTime())) {
 			date = new Date(item.start.dateTime);
 		   }
 			return date;
@@ -139,10 +136,9 @@ angular.module('starter.controllers', [])
 })
 
 
- .controller('WebViewCtrl', function($ionicPlatform, $scope, $rootScope, $cordovaDevice, $cordovaInAppBrowser, PetService, $stateParams) {
+ .controller('WebViewCtrl', function($ionicPlatform, $scope, $rootScope,/* $cordovaDevice,/* $cordovaInAppBrowser, */PetService, $stateParams) {
 
  $rootScope.pet = PetService.get($stateParams.pethtmlLink);
-
   var options = {
       location: 'yes',
       clearcache: 'yes',
@@ -163,21 +159,18 @@ angular.module('starter.controllers', [])
   	var success	 = "Event Created";
   	var error 	 = "Error creating ";
   	$ionicPlatform.ready(function() {
-		//    window.plugins.calendar.createCalendar(calendarName,success,error);
-		var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
-		  calOptions.firstReminderMinutes = 120; // default is 60, pass in null for no reminder (alarm)
-		  calOptions.secondReminderMinutes = 5;
-
+	var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
+	calOptions.firstReminderMinutes = 120; // default is 60, pass in null for no reminder (alarm)
+	calOptions.secondReminderMinutes = 5;
 
 		  // Added these options in version 4.2.4:
 //		  calOptions.recurrence = "monthly"; // supported are: daily, weekly, monthly, yearly
-//		  calOptions.recurrenceEndDate = new Date(2015,10,1,0,0,0,0,0); // leave null to add events into infinity and beyond
-		  calOptions.calendarName = "MyCreatedCalendar"; // iOS only
-		  calOptions.calendarId = 1; // Android only, use id obtained from listCalendars() call which is described below. This will be ignored on iOS in favor of calendarName and vice versa. Default: 1.
+//		  calOptions.recurrenceEndDate = new Date(2015,10,1,0,0,0,0,0); // leave null to add events into infinity and beyond calOptions.calendarName = "MyCreatedCalendar"; // iOS only
+    calOptions.calendarId = 1; // Android only, use id obtained from listCalendars() call which is described below. This will be ignored on iOS in favor of calendarName and vice versa. Default: 1.
 
 		  // And the URL can be passed since 4.3.2 (will be appended to the notes on Android as there doesn't seem to be a sep field)
-		  calOptions.url = "https://www.google.com";
-		  window.plugins.calendar.createEventInteractively(title,location,notes,formattedDate,formattedDate,calOptions, success,error);
-	});
-  };
+    calOptions.url = "https://www.google.com";
+    window.plugins.calendar.createEventInteractively(title,location,notes,formattedDate,formattedDate,calOptions, success,error);
+	})
+  }
  });

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'/*, 'ngCordova'*/, 'angular-loading-bar', 'ngAnimate'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angular-loading-bar', 'ngAnimate'])
 //angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', 'ngCordova','angular-loading-bar', 'ngAnimate'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,29 +32,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'/*,
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: '/tab',
-      abstract: true,
-      templateUrl: 'templates/tabs.html'
-    })
-  
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
     .state('app.main', {
       url: '/main',
       views: {
@@ -64,15 +41,50 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'/*,
         }
       }
     })
+  // .state('app.search', {
+  //   url: '/search',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/search.html'
+  //     }
+  //   }
+  // })
+    // setup an abstract state for the tabs directive
+    // .state('tab', {
+    //   url: '/tab',
+    //   abstract: true,
+    //   templateUrl: 'templates/tabs.html'
+    // })
+  
+  // .state('app.browse', {
+  //     url: '/browse',
+  //     views: {
+  //       'menuContent': {
+  //         templateUrl: 'templates/browse.html'
+  //       }
+  //     }
+  //   })
 
-      .state('app.about', {
-      url: '/about',
+    .state('app.pet', {
+      url: '/pet/:pethtmlLink',
       views: {
-        'about-tab': {
-          templateUrl: 'templates/about.html'
+       // 'pets-tab': {
+          'menuContent': {
+          templateUrl: 'templates/calendar.html',
+          controller: 'WebViewCtrl'
         }
+      //}
       }
     })
+
+    //   .state('app.about', {
+    //   url: '/about',
+    //   views: {
+    //     'about-tab': {
+    //       templateUrl: 'templates/about.html'
+    //     }
+    //   }
+    // })
   
   .state('app.single', {
     url: '/main/:playlistId',
