@@ -4,8 +4,27 @@ angular.module('starter.controllers', [])
 	var events = [];
 	var array = [];
 	var today = new Date();
+	var vdate = new Date();
 	var index = 0;
-	var count = 0;
+	var count,month,yr = 0;
+	$scope.months=[];
+
+	// PREPARE THE MONTH LINKS IN THE SIDE-MENU
+	for(i=1; i<12; i++) {
+	Date.prototype.nextMonth = nextMonth;
+	month = vdate.toLocaleString("en-us", { month: "short" });
+	yr = vdate.getFullYear();
+	$scope.months.push({name:month, year:yr,num:vdate.getMonth()+1});
+
+	vdate.nextMonth();
+	}
+
+		function nextMonth(){
+			var thisMonth = this.getMonth();
+			this.setMonth(thisMonth+1);
+			if(this.getMonth() != thisMonth+1 && this.getMonth() != 0)
+				this.setDate(0);
+		}
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -102,7 +121,10 @@ angular.module('starter.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
-
+  // Open the login modal
+  $scope.test = function() {
+    alert("hello")
+  };
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
