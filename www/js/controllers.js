@@ -8,13 +8,15 @@ angular.module('starter.controllers', [])
 	var index = 0;
 	var count,month,yr = 0;
 	$scope.months=[];
-
+    $scope.activeMonth = function(month) {
+        console.log(month);
+    }
 	// PREPARE THE MONTH LINKS IN THE SIDE-MENU
-	for(i=1; i<12; i++) {
+	for(i=1; i<=12; i++) {
 	Date.prototype.nextMonth = nextMonth;
 	month = vdate.toLocaleString("en-us", { month: "short" });
 	yr = vdate.getFullYear();
-	$scope.months.push({name:month, year:yr,num:vdate.getMonth()+1});
+	$scope.months.push({name:month, year:yr, num:vdate.getMonth()});
 
 	vdate.nextMonth();
 	}
@@ -49,53 +51,53 @@ angular.module('starter.controllers', [])
 	   return $rootScope.pets;
 	}
  else {
-            var api = "https://www.googleapis.com/calendar/v3/calendars/h5u8avc730714t43rb5gbod1ms@group.calendar.google.com/events?singleEvents=True&orderBy=startTime&sortorder=ascending&timeMin=";
-               api =  api.concat(today.toISOString());
-    var req = api.concat("&key=AIzaSyC-Z0ZvCbH2Rr-9K0rEniclGBuGDdNUyWA&callback=JSON_CALLBACK");  
+        var api = "https://www.googleapis.com/calendar/v3/calendars/h5u8avc730714t43rb5gbod1ms@group.calendar.google.com/events?singleEvents=True&orderBy=startTime&sortorder=ascending&timeMin=";
+        api =  api.concat(today.toISOString());
+    	var req = api.concat("&key=AIzaSyC-Z0ZvCbH2Rr-9K0rEniclGBuGDdNUyWA&callback=JSON_CALLBACK");  
         $http.jsonp(req)
              .success(function(data){
-		var events = angular.fromJson(data);
-		for(i in events['items']) {
-           	item = events['items'][i];
-           	item.Id = i;
-	   		var date = getDateFromItem(item);
-            var d = date.getTime();
-            var t = today.getTime();
-	   		//only future events
-	    	if(date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth()) {
-	    		item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+				var events = angular.fromJson(data);
+				for(i in events['items']) {
+		           	item = events['items'][i];
+		           	item.Id = i;
+			   		var date = getDateFromItem(item);
+		            var d = date.getTime();
+		            var t = today.getTime();
+			   		//only future events
+			    	if(date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth()) {
+			    		item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
 
-	          array[index++] = item;
-	    	}
-        }
-   	    $rootScope.pets = bubbleSort(array);
-   	    PetService.set($rootScope.pets);
+			          array[index++] = item;
+			    	}
+		        }
+   	    		$rootScope.pets = array;//bubbleSort(array);
+   	    		PetService.set($rootScope.pets);
 
-        function getDateFromItem(item){
-           var date = new Date(item.startTime);
-		   if(isNaN(date.getTime())) {
-			date = new Date(item.start.dateTime);
-		   }
-			return date;
-		}
-		function bubbleSort(values) {
-		  var length = values.length - 1;
-		  do {
-		    var swapped = false;
-		    for(var i = 0; i < length; ++i) {
-		      date1 = getDateFromItem(values[i]);
-		      date2 = getDateFromItem(values[i+1]);
-		      if (date1 > date2) {
-		        var temp = values[i];
-		        values[i] = values[i+1];
-		        values[i+1] = temp;
-		        swapped = true;
-		      }
-		    }
-		  }
-  while(swapped == true)
-  return values;
-};
+		        function getDateFromItem(item){
+		           var date = new Date(item.startTime);
+				   if(isNaN(date.getTime())) {
+					date = new Date(item.start.dateTime);
+				   }
+					return date;
+				};
+// 		function bubbleSort(values) {
+// 		  var length = values.length - 1;
+// 		  do {
+// 		    var swapped = false;
+// 		    for(var i = 0; i < length; ++i) {
+// 		      date1 = getDateFromItem(values[i]);
+// 		      date2 = getDateFromItem(values[i+1]);
+// 		      if (date1 > date2) {
+// 		        var temp = values[i];
+// 		        values[i] = values[i+1];
+// 		        values[i+1] = temp;
+// 		        swapped = true;
+// 		      }
+// 		    }
+// 		  }
+//   while(swapped == true)
+//   return values;
+// };
     }).error(function(data){
     	alert("Cannot connect to Google.  Please verify you are connected to a network.  Then PULL Down to REFRESH");
     });
@@ -136,6 +138,7 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
+
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [

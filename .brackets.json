@@ -1,5 +1,14 @@
 {
     "jscodehints.detectedExclusions": [
-        "/Users/ejb008/Documents/ionic/myApp/www/js/index.js"
+        "/Users/ejb008/Documents/ionic/myApp/www/js/index.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/cordova/lib/appinfo.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/lib/js/ionic.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/lib/js/ionic.bundle.min.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/lib/js/ionic-angular.min.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/lib/js/ionic-angular.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/plugins/cordova-plugin-whitelist/whitelist.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/app.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/index.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/controllers.js"
     ]
 }
