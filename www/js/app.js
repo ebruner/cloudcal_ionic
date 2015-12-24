@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+.state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -41,6 +41,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
+  
+  .state('app2', {
+    url: '/app2',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl'
+  })
   // .state('app.search', {
   //   url: '/search',
   //   views: {
@@ -77,14 +84,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    //   .state('app.about', {
-    //   url: '/about',
-    //   views: {
-    //     'about-tab': {
-    //       templateUrl: 'templates/about.html'
-    //     }
-    //   }
-    // })
+       .state('app.about', {
+       url: '/about',
+       views: {
+         'about-tab': {
+           templateUrl: 'templates/about.html'
+         }
+       }
+     })
   
   .state('app.single', {
     url: '/main/:playlistId',

@@ -6,17 +6,39 @@ angular.module('starter.controllers', [])
 	var today = new Date();
 	var vdate = new Date();
 	var index = 0;
-	var count,month,yr = 0;
+    var counter = 0; //used around line 100
+    $rootScope.jan = [];
+	var count,monthShortName,yr = 0;
 	$scope.months=[];
-    $scope.activeMonth = function(month) {
-        console.log(month);
+
+    $scope.activeMonth = function(month, year) {
+        $rootScope.month = month;
+        $rootScope.year = year;
+        $rootScope.pets = null;
+        switch (month) {
+            case 0:
+                $rootScope.pets = $rootScope.jan;
+                break;
+        }
+
+//THE VIEW WILL UPDATE DEPENDING ON WHAT pets IS SET TO.
+//PERHAPS, THE INITIAL PARSE OF EVENTS SHOULD CREATE MONTHLY DATA ON rootscope
+//IF THIS IS DONE, THEN ALL THIS METHOD WOULD HAVE TO DO IS SOMETHING LIKE:
+        //$rootScope.pets = $rootScope.March;
+//        this.getApplication().getController('AppCtrl');
+//        $http.get('app')
+//            .success(function(newItems) {
+//            alert("success");
+//     }).error(function(data){
+//    	alert("fail");
+//    });
     }
 	// PREPARE THE MONTH LINKS IN THE SIDE-MENU
 	for(i=1; i<=12; i++) {
 	Date.prototype.nextMonth = nextMonth;
-	month = vdate.toLocaleString("en-us", { month: "short" });
+	monthShortName = vdate.toLocaleString("en-us", { month: "short" });
 	yr = vdate.getFullYear();
-	$scope.months.push({name:month, year:yr, num:vdate.getMonth()});
+	$scope.months.push({name:monthShortName, year:yr, num:vdate.getMonth()});
 
 	vdate.nextMonth();
 	}
@@ -39,8 +61,6 @@ angular.module('starter.controllers', [])
      .success(function(newItems) {
      })
      .finally(function() {
-       //$scope.pets = null;
-       //$state.go($state.current, {}, {reload: true});
 	$window.location.reload(true);
 
        // Stop the ion-refresher from spinning
@@ -51,6 +71,11 @@ angular.module('starter.controllers', [])
 	   return $rootScope.pets;
 	}
  else {
+     //MONTH AND YEAR MAY HAVE BEEN SET BY THE SIDE-MENU
+     if($scope.month == null) {
+         $scope.month = today.getMonth();
+         $scope.year = today.getFullYear();
+     }
         var api = "https://www.googleapis.com/calendar/v3/calendars/h5u8avc730714t43rb5gbod1ms@group.calendar.google.com/events?singleEvents=True&orderBy=startTime&sortorder=ascending&timeMin=";
         api =  api.concat(today.toISOString());
     	var req = api.concat("&key=AIzaSyC-Z0ZvCbH2Rr-9K0rEniclGBuGDdNUyWA&callback=JSON_CALLBACK");  
@@ -61,15 +86,21 @@ angular.module('starter.controllers', [])
 		           	item = events['items'][i];
 		           	item.Id = i;
 			   		var date = getDateFromItem(item);
-		            var d = date.getTime();
-		            var t = today.getTime();
-			   		//only future events
+			   		//only future events for this month
 			    	if(date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth()) {
 			    		item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
-
+		        }
+                    
+                    //USE DATE NUMBER AS ARRAY
+                    switch (date.getMonth()) {
+                        case 0:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.jan[counter++] = item;
+                            break;
+                        }
 			          array[index++] = item;
 			    	}
-		        }
+
    	    		$rootScope.pets = array;//bubbleSort(array);
    	    		PetService.set($rootScope.pets);
 
@@ -129,7 +160,6 @@ angular.module('starter.controllers', [])
   };
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
@@ -141,14 +171,14 @@ angular.module('starter.controllers', [])
 
 
 .controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+//  $scope.playlists = [
+//    { title: 'Reggae', id: 1 },
+//    { title: 'Chill', id: 2 },
+//    { title: 'Dubstep', id: 3 },
+//    { title: 'Indie', id: 4 },
+//    { title: 'Rap', id: 5 },
+//    { title: 'Cowbell', id: 6 }
+//  ];
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {

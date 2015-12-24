@@ -9,6 +9,12 @@
         "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/plugins/cordova-plugin-whitelist/whitelist.js",
         "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/app.js",
         "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/index.js",
-        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/controllers.js"
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/controllers.js",
+        "/home/ejb008/ionicApps/cloudcal/plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/cordova/lib/device.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/services.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/assets/www/js/Calendar.js",
+        "/home/ejb008/ionicApps/cloudcal/platforms/android/cordova/lib/android_sdk_version.js",
+        "/home/ejb008/ionicApps/cloudcal/www/js/controllers.js"
     ]
 }

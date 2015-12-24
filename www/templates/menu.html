@@ -20,7 +20,7 @@
       <ion-list>
         <ion-item menu-close href="#/app/Search" class="icon ion-ios-search"><h3>Search</h3></ion-item>
 
-      <ion-item ng-repeat="month in months" ng-click="activeMonth(month.num)">
+      <ion-item menu-close ng-repeat="month in months" ng-click="activeMonth(month.num, month.year)" ng-href=#/app2>
                       {{month.name}}
       </ion-item>
       
