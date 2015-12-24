@@ -1,0 +1,28 @@
+<!--
+  'pet' is a $scope variable created in the PetCtrl controller (controllers.js)
+  The PetCtrl pulls data from the Pets service (service.js)
+  The Pets service returns an array of pet data
+-->
+<!-- <br> -->
+<ion-view title = "{{pet.summary}}">
+<ion-content>
+  <div class="card">
+    <div class="item item-divider" ng-controller="WebViewCtrl">
+      {{pet.summary}}
+    </div>
+    <div class="item item-text-wrap item=select" ng-show=pet.description>
+      {{pet.description}}
+    </div>
+    <div class="item item-text-wrap" ng-show=!pet.description>
+      No Event Description available
+    </div>
+    <div class="item item-text-wrap" ng-hide=!pet.date>
+      <h3>{{pet.date}}</h3>
+    </div>
+    <div class="item item-divider" ng-hide=!pet.location>
+      <h3>{{pet.location}}</h3>
+    </div>
+    <button class="button button-block button-light" ng-click="doClick()">Add To My Calendar</button>
+  </div>
+</ion-content>
+</ion-view>
