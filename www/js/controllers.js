@@ -1,15 +1,25 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope, $http, $state, $window, cfpLoadingBar, PetService) {
-	var events = [];
-	var array = [];
 	var today = new Date();
 	var vdate = new Date();
 	var index = 0;
-    var counter = 0; //used around line 100
-    $rootScope.jan = [];
 	var count,monthShortName,yr = 0;
 	$scope.months=[];
+    var events = [];
+	var array = [];
+    $rootScope.jan = [];
+    $rootScope.feb = [];
+    $rootScope.mar = [];
+    $rootScope.apr = [];
+    $rootScope.may = [];
+    $rootScope.jun = [];
+    $rootScope.jul = [];
+    $rootScope.aug = [];
+    $rootScope.sep = [];
+    $rootScope.oct = [];
+    $rootScope.nov = [];
+    $rootScope.dec = [];
 
     $scope.activeMonth = function(month, year) {
         $rootScope.month = month;
@@ -19,19 +29,41 @@ angular.module('starter.controllers', [])
             case 0:
                 $rootScope.pets = $rootScope.jan;
                 break;
+            case 1:
+                $rootScope.pets = $rootScope.feb;
+                break;
+            case 2:
+                $rootScope.pets = $rootScope.mar;
+                break;
+            case 3:
+                $rootScope.pets = $rootScope.apr;
+                break;
+            case 4:
+                $rootScope.pets = $rootScope.may;
+                break;
+            case 5:
+                $rootScope.pets = $rootScope.jun;
+                break;
+            case 6:
+                $rootScope.pets = $rootScope.jul;
+                break;
+            case 7:
+                $rootScope.pets = $rootScope.aug;
+                break;
+            case 8:
+                $rootScope.pets = $rootScope.sep;
+                break;
+            case 9:
+                $rootScope.pets = $rootScope.oct;
+                break;
+            case 10:
+                $rootScope.pets = $rootScope.nov;
+                break;
+            case 11:
+                $rootScope.pets = $rootScope.dec;
+                break;
+                
         }
-
-//THE VIEW WILL UPDATE DEPENDING ON WHAT pets IS SET TO.
-//PERHAPS, THE INITIAL PARSE OF EVENTS SHOULD CREATE MONTHLY DATA ON rootscope
-//IF THIS IS DONE, THEN ALL THIS METHOD WOULD HAVE TO DO IS SOMETHING LIKE:
-        //$rootScope.pets = $rootScope.March;
-//        this.getApplication().getController('AppCtrl');
-//        $http.get('app')
-//            .success(function(newItems) {
-//            alert("success");
-//     }).error(function(data){
-//    	alert("fail");
-//    });
     }
 	// PREPARE THE MONTH LINKS IN THE SIDE-MENU
 	for(i=1; i<=12; i++) {
@@ -82,6 +114,8 @@ angular.module('starter.controllers', [])
         $http.jsonp(req)
              .success(function(data){
 				var events = angular.fromJson(data);
+                var jan_index, feb_index, mar_index, apr_index, may_index, jun_index, jul_index, aug_index, sep_index, oct_index, nov_index, dec_index;
+                jan_index=feb_index=mar_index=apr_index=may_index=jun_index=jul_index=aug_index=sep_index=oct_index=nov_index=dec_index = 0;
 				for(i in events['items']) {
 		           	item = events['items'][i];
 		           	item.Id = i;
@@ -95,7 +129,51 @@ angular.module('starter.controllers', [])
                     switch (date.getMonth()) {
                         case 0:
                             item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
-                            $rootScope.jan[counter++] = item;
+                            $rootScope.jan[jan_index++] = item;
+                            break;
+                        case 1:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.feb[feb_index++] = item;
+                            break;
+                        case 2:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.mar[mar_index++] = item;
+                            break;
+                        case 3:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.apr[apr_index++] = item;
+                            break;
+                        case 4:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.may[may_index++] = item;
+                            break;
+                        case 5:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.jun[jun_index++] = item;
+                            break;
+                        case 6:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.jul[jul_index++] = item;
+                            break;
+                        case 7:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.aug[aug_index++] = item;
+                            break;
+                        case 8:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.sep[sep_index++] = item;
+                            break;
+                        case 9:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.oct[oct_index++] = item;
+                            break;
+                        case 10:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.nov[nov_index++] = item;
+                            break;
+                        case 11:
+                            item.date = date.toDateString() + ' ' + date.toLocaleTimeString();
+                            $rootScope.dec[dec_index++] = item;
                             break;
                         }
 			          array[index++] = item;
