@@ -1,5 +1,7 @@
 angular.module('starter.controllers', [])
-
+.controller('Search', function($ionicFilterBar) {
+    
+})
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope, $http, $state, $window, cfpLoadingBar, PetService) {
 	var today = new Date();
 	var vdate = new Date();
@@ -108,7 +110,7 @@ angular.module('starter.controllers', [])
          $scope.month = today.getMonth();
          $scope.year = today.getFullYear();
      }
-        var api = "https://www.googleapis.com/calendar/v3/calendars/h5u8avc730714t43rb5gbod1ms@group.calendar.google.com/events?singleEvents=True&orderBy=startTime&sortorder=ascending&timeMin=";
+        var api = "https://www.googleapis.com/calendar/v3/calendars/h5u8avc730714t43rb5gbod1ms@group.calendar.google.com/events?singleEvents=True&orderBy=startTime&sortorder=ascending&&maxResults=2500&timeMin=";
         api =  api.concat(today.toISOString());
     	var req = api.concat("&key=AIzaSyC-Z0ZvCbH2Rr-9K0rEniclGBuGDdNUyWA&callback=JSON_CALLBACK");  
         $http.jsonp(req)
@@ -178,7 +180,6 @@ angular.module('starter.controllers', [])
                         }
 			          array[index++] = item;
 			    	}
-
    	    		$rootScope.pets = array;//bubbleSort(array);
    	    		PetService.set($rootScope.pets);
 

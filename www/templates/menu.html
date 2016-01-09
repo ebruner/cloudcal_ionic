@@ -1,6 +1,10 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable">
+        <div class="buttons">
+        <button class="button button-icon ion-android-search" 
+                ng-click="vm.showFilterBar()"></button>
+    </div>
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -18,13 +22,13 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/Search" class="icon ion-ios-search"><h3>Search</h3></ion-item>
+          
+      <ion-item menu-close href="#/app/search" class="icon ion-ios-search"><h3>Search</h3></ion-item>
 
-      <ion-item menu-close ng-repeat="month in months" ng-click="activeMonth(month.num, month.year)" ng-href=#/app2>
-                      {{month.name}}
-      </ion-item>
+      <ion-item menu-close ng-repeat="month in months" ng-click="activeMonth(month.num, month.year)" ng-href=#/app2>{{month.name}}</ion-item>
       
-      <ion-item menu-close href="#/app/about">About</ion-item>
+      <ion-item menu-close ng-href="#/app/about">About</ion-item>
+          
       </ion-list>
     </ion-content>
   </ion-side-menu>
